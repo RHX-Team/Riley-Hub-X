@@ -10,8 +10,3 @@ Title = "Riley Hub X",
 Text = "Riley Hub X Has Loaded",
 Duration = 5,
 })
-game.StarterGui:SetCore("SendNotification", {
-Title = "Riley Hub X",
-Text = "Riley Hub X Might Not Support The Game You Are Playing",
-Duration = 5,
-})
