@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Riley Hub X", HidePremium = false, SaveConfig = true, IntroEnabled = true, IntroText="Riley Hub X"})
+local Window = OrionLib:MakeWindow({IntroText = "Riley Hub X",Name = "Riley Hub X", HidePremium = false, SaveConfig = true, ConfigFolder = "RileyHubX"})
 if game.PlaceId == 6516141723 then
     OrionLib:MakeNotification({
         Name = "Error",
@@ -7,8 +7,8 @@ if game.PlaceId == 6516141723 then
         Time = 2
     })
 end
-local Tab = Window:MakeTab({
-	Name = "Main",
+local VisualsTab = Window:MakeTab({
+	Name = "Visuals",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -17,7 +17,7 @@ local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 
 local KeyChams = {}
-Tab:AddToggle({
+VisualsTab:AddToggle({
 	Name = "Key Chams",
 	Default = false,
     Flag = "KeyToggle",
@@ -58,7 +58,7 @@ end
 coroutine.resume(KeyCoroutine)
 
 local BookChams = {}
-Tab:AddToggle({
+VisualsTab:AddToggle({
 	Name = "Book Chams",
 	Default = false,
     Flag = "BookToggle",
@@ -71,7 +71,7 @@ Tab:AddToggle({
 })
 
 local FigureChams = {}
-Tab:AddToggle({
+VisualsTab:AddToggle({
 	Name = "Figure Chams",
 	Default = false,
     Flag = "FigureToggle",
@@ -127,27 +127,61 @@ local EntityCoroutine = coroutine.create(function()
     table.insert(FigureChams,ApplyEntityChams(Entity))
 end)
 
-local Tab2 = Window:MakeTab({
+
+local GameTab = Window:MakeTab({
 	Name = "Game",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+local CharTab = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
-Tab2:AddToggle({
+local TargetWalkspeed
+CharTab:AddSlider({
+	Name = "Change Walkspeed",
+	Min = 0,
+	Max = 50,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	Callback = function(Value)
+		TargetWalkspeed = Value
+	end    
+})
+
+local pcl = Instance.new("SpotLight")
+pcl.Brightness = 1
+pcl.Face = Enum.NormalId.Front
+pcl.Range = 90
+pcl.Parent = game.Players.LocalPlayer.Character.Head
+pcl.Enabled = false
+
+
+CharTab:AddToggle({
+	Name = "Headlight",
+	Default = false,
+    Callback = function(Value)
+        pcl.Enabled = Value
+    end
+})
+
+GameTab:AddToggle({
 	Name = "No Seek Arms",
 	Default = false,
     Flag = "NoSeek",
     Save = true
 })
 
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "Instant Interact",
 	Default = false,
     Flag = "InstantToggle",
     Save = true
 })
-
-Tab2:AddButton({
+GameTab:AddButton({
 	Name = "Skip Level",
 	Callback = function()
         pcall(function()
@@ -216,7 +250,7 @@ local AutoSkipCoro = coroutine.create(function()
 end)
 coroutine.resume(AutoSkipCoro)
 
-Tab2:AddButton({
+GameTab:AddButton({
 	Name = "No Jumpscare",
 	Callback = function()
         pcall(function()
@@ -224,57 +258,52 @@ Tab2:AddButton({
         end)
   	end    
 })
-
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "Avoid Rush/Ambush",
 	Default = false,
     Flag = "AvoidRushToggle",
     Save = true
 })
-
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "No Screech",
 	Default = false,
     Flag = "ScreechToggle",
     Save = true
 })
 
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "Always Win Heartbeat (Figure Minigame)",
 	Default = false,
     Flag = "HeartbeatWin",
     Save = true
 })
 
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "Predict Chases",
 	Default = false,
     Flag = "PredictToggle" ,
     Save = true
 })
-
-Tab2:AddToggle({
+GameTab:AddToggle({
 	Name = "Entity Notify",
 	Default = false,
     Flag = "MobToggle" ,
     Save = true
 })
-
-Tab2:AddButton({
-	Name = "Complete Breaker Box (Minigame)",
+GameTab:AddButton({
+	Name = "Complete Breaker Box Minigame",
 	Callback = function()
         game:GetService("ReplicatedStorage").Bricks.EBF:FireServer()
   	end    
 })
-
-Tab2:AddButton({
+GameTab:AddButton({
 	Name = "Skip Level 50",
 	Callback = function()
         local CurrentDoor = workspace.CurrentRooms[tostring(LatestRoom+1)]:WaitForChild("Door")
         game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
   	end    
 })
-GameTab:AddParagraph("Warning","You May Need To Open/Close The Breaker Box Panel A Few Times For It To Work, Fixing Soon.")
+GameTab:AddParagraph("Warning","You Need To Open/Close The Breaker Box Panel A Few Times For It To Work, Fixing Soon")
 
 --// Actual Code Starts Here
 
@@ -352,7 +381,7 @@ local NotificationCoroutine = coroutine.create(function()
             if OrionLib.Flags["AvoidRushToggle"].Value == true then
                 OrionLib:MakeNotification({
                     Name = "Warning!",
-                    Content = "Avoiding Rush. Please Wait",
+                    Content = "Avoiding Rush. Please Wait.",
                     Time = 5
                 })
                 local OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -375,7 +404,7 @@ local NotificationCoroutine = coroutine.create(function()
             if OrionLib.Flags["AvoidRushToggle"].Value == true then
                 OrionLib:MakeNotification({
                     Name = "Warning!",
-                    Content = "Avoiding Ambush. Please Wait",
+                    Content = "Avoiding Ambush. Please Wait.",
                     Time = 5
                 })
                 local OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -400,13 +429,13 @@ end)
 
 --// Actual Code Ends Here
 
-local Tab3 = Window:MakeTab({
+local CreditsTab = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
-Tab3:AddParagraph("Credits To","RileyBeeRBLX")
+CreditsTab:AddParagraph("Credits To","RileyBeeRBLX")
 
 coroutine.resume(NotificationCoroutine)
 
