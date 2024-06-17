@@ -400,13 +400,13 @@ end)
 
 --// Actual Code Ends Here
 
-local Tab = Window:MakeTab({
+local Tab3 = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
-CreditsTab:AddParagraph("Credits To","RileyBeeRBLX")
+Tab3:AddParagraph("Credits To","RileyBeeRBLX")
 
 coroutine.resume(NotificationCoroutine)
 
