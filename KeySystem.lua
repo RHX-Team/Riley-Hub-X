@@ -6,15 +6,30 @@ screenGui.Name = "KeySystem"
 -- Create main frame
 local mainFrame = Instance.new("Frame")
 mainFrame.Parent = screenGui
-mainFrame.BackgroundColor3 = Color3.new(0, 0.5, 0)
-mainFrame.Size = UDim2.new(0, 400, 0, 200)
-mainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+mainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+mainFrame.Size = UDim2.new(0, 450, 0, 250)
+mainFrame.Position = UDim2.new(0.5, -225, 0.5, -125)
 mainFrame.Draggable = true
 mainFrame.Active = true
 
 -- Add corner radius to main frame
 local cornerRadius = Instance.new("UICorner")
+cornerRadius.CornerRadius = UDim.new(0, 15)
 cornerRadius.Parent = mainFrame
+
+-- Add stroke to main frame
+local frameStroke = Instance.new("UIStroke")
+frameStroke.Color = Color3.new(0.3, 0.3, 0.3)
+frameStroke.Thickness = 2
+frameStroke.Parent = mainFrame
+
+-- Add gradient to main frame
+local frameGradient = Instance.new("UIGradient")
+frameGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.new(0.1, 0.1, 0.1)),
+    ColorSequenceKeypoint.new(1, Color3.new(0.2, 0.2, 0.2))
+}
+frameGradient.Parent = mainFrame
 
 -- Create the title
 local title = Instance.new("TextLabel")
@@ -24,41 +39,59 @@ title.Size = UDim2.new(0, 200, 0, 50)
 title.Position = UDim2.new(0.5, -100, 0, 10)
 title.BackgroundTransparency = 1
 title.TextColor3 = Color3.new(1, 1, 1)
-title.Font = Enum.Font.SourceSansBold
-title.TextSize = 24
+title.Font = Enum.Font.GothamBold
+title.TextSize = 28
+title.TextStrokeTransparency = 0.5
+title.TextScaled = true
 
 -- Create key input textbox
 local keyBox = Instance.new("TextBox")
 keyBox.Parent = mainFrame
-keyBox.PlaceholderText = "KEY"
-keyBox.Size = UDim2.new(0, 200, 0, 50)
-keyBox.Position = UDim2.new(0.5, -100, 0, 70)
-keyBox.BackgroundColor3 = Color3.new(1, 1, 1)
-keyBox.TextColor3 = Color3.new(0, 0, 0)
-keyBox.Font = Enum.Font.SourceSans
+keyBox.PlaceholderText = "Enter your key"
+keyBox.Size = UDim2.new(0, 300, 0, 50)
+keyBox.Position = UDim2.new(0.5, -150, 0, 70)
+keyBox.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
+keyBox.TextColor3 = Color3.new(1, 1, 1)
+keyBox.Font = Enum.Font.Gotham
 keyBox.TextSize = 18
+keyBox.ClearTextOnFocus = false
+
+-- Add corner radius to keyBox
+local keyBoxCornerRadius = Instance.new("UICorner")
+keyBoxCornerRadius.CornerRadius = UDim.new(0, 10)
+keyBoxCornerRadius.Parent = keyBox
 
 -- Create Verify button
 local verifyButton = Instance.new("TextButton")
 verifyButton.Parent = mainFrame
 verifyButton.Text = "VERIFY"
-verifyButton.Size = UDim2.new(0, 100, 0, 50)
-verifyButton.Position = UDim2.new(0.5, -110, 0, 130)
-verifyButton.BackgroundColor3 = Color3.new(0, 1, 0)
-verifyButton.TextColor3 = Color3.new(0, 0, 0)
-verifyButton.Font = Enum.Font.SourceSansBold
+verifyButton.Size = UDim2.new(0, 140, 0, 50)
+verifyButton.Position = UDim2.new(0.5, -160, 0, 150)
+verifyButton.BackgroundColor3 = Color3.new(0.25, 0.75, 0.25)
+verifyButton.TextColor3 = Color3.new(1, 1, 1)
+verifyButton.Font = Enum.Font.GothamBold
 verifyButton.TextSize = 18
+
+-- Add corner radius to verifyButton
+local verifyButtonCornerRadius = Instance.new("UICorner")
+verifyButtonCornerRadius.CornerRadius = UDim.new(0, 10)
+verifyButtonCornerRadius.Parent = verifyButton
 
 -- Create Get Key button
 local getKeyButton = Instance.new("TextButton")
 getKeyButton.Parent = mainFrame
 getKeyButton.Text = "GET KEY"
-getKeyButton.Size = UDim2.new(0, 100, 0, 50)
-getKeyButton.Position = UDim2.new(0.5, 10, 0, 130)
-getKeyButton.BackgroundColor3 = Color3.new(0, 1, 0)
-getKeyButton.TextColor3 = Color3.new(0, 0, 0)
-getKeyButton.Font = Enum.Font.SourceSansBold
+getKeyButton.Size = UDim2.new(0, 140, 0, 50)
+getKeyButton.Position = UDim2.new(0.5, 20, 0, 150)
+getKeyButton.BackgroundColor3 = Color3.new(0.25, 0.75, 0.25)
+getKeyButton.TextColor3 = Color3.new(1, 1, 1)
+getKeyButton.Font = Enum.Font.GothamBold
 getKeyButton.TextSize = 18
+
+-- Add corner radius to getKeyButton
+local getKeyButtonCornerRadius = Instance.new("UICorner")
+getKeyButtonCornerRadius.CornerRadius = UDim.new(0, 10)
+getKeyButtonCornerRadius.Parent = getKeyButton
 
 -- Create close button (X)
 local closeButton = Instance.new("TextButton")
@@ -66,10 +99,15 @@ closeButton.Parent = mainFrame
 closeButton.Text = "X"
 closeButton.Size = UDim2.new(0, 30, 0, 30)
 closeButton.Position = UDim2.new(1, -40, 0, 10)
-closeButton.BackgroundColor3 = Color3.new(1, 0, 0)
+closeButton.BackgroundColor3 = Color3.new(0.8, 0.1, 0.1)
 closeButton.TextColor3 = Color3.new(1, 1, 1)
-closeButton.Font = Enum.Font.SourceSansBold
+closeButton.Font = Enum.Font.GothamBold
 closeButton.TextSize = 18
+
+-- Add corner radius to closeButton
+local closeButtonCornerRadius = Instance.new("UICorner")
+closeButtonCornerRadius.CornerRadius = UDim.new(0, 8)
+closeButtonCornerRadius.Parent = closeButton
 
 -- Key validation logic
 local validKey = "your_custom_key"  -- Replace with your actual key
