@@ -1,123 +1,194 @@
--- Define the GUI elements
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Logo = Instance.new("ImageLabel")
-local Title = Instance.new("TextLabel")
-local KeyBox = Instance.new("TextBox")
-local VerifyButton = Instance.new("TextButton")
-local GetKeyButton = Instance.new("TextButton")
-local CloseButton = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
+-- Services
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
 
--- Parent the GUI elements
-ScreenGui.Parent = game.CoreGui
-Frame.Parent = ScreenGui
-Logo.Parent = Frame
-Title.Parent = Frame
-KeyBox.Parent = Frame
-VerifyButton.Parent = Frame
-GetKeyButton.Parent = Frame
-CloseButton.Parent = Frame
-UICorner.Parent = Frame
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.Name = "ModernUI"
 
--- Set properties for the Frame
-Frame.BackgroundColor3 = Color3.fromRGB(0, 153, 0)  -- Green background
-Frame.Position = UDim2.new(0.35, 0, 0.35, 0)
-Frame.Size = UDim2.new(0, 450, 0, 250)  -- Larger and wider
-UICorner.CornerRadius = UDim.new(0, 10)
-Frame.Active = true
-Frame.Draggable = true
+-- Create main frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Parent = screenGui
+mainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+mainFrame.Size = UDim2.new(0, 450, 0, 250)
+mainFrame.Position = UDim2.new(0.5, -225, 0.5, -125)
+mainFrame.Draggable = true
+mainFrame.Active = true
 
--- Set properties for the Logo
-Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Logo.BackgroundTransparency = 1
-Logo.Position = UDim2.new(0.02, 0, 0.05, 0)
-Logo.Size = UDim2.new(0, 40, 0, 40)
-Logo.Image = "https://cdn.discordapp.com/attachments/1251015431855145021/1251798668952998008/rhx.png?ex=666fe3db&is=666e925b&hm=8fd02b463f6787255bea457a1a341ca89bc5d6a82c7d6a2c36945a98132a470e&"
+-- Add corner radius to main frame
+local cornerRadius = Instance.new("UICorner")
+cornerRadius.CornerRadius = UDim.new(0, 15)
+cornerRadius.Parent = mainFrame
 
--- Set properties for the Title
-Title.BackgroundColor3 = Color3.fromRGB(0, 153, 0)
-Title.BackgroundTransparency = 1
-Title.Position = UDim2.new(0.2, 0, 0.05, 0)
-Title.Size = UDim2.new(0.7, 0, 0.3, 0)
-Title.Font = Enum.Font.Gotham
-Title.Text = "Riley Hub X Key System"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextScaled = true
-Title.TextWrapped = true
+-- Add stroke to main frame
+local frameStroke = Instance.new("UIStroke")
+frameStroke.Color = Color3.new(0.3, 0.3, 0.3)
+frameStroke.Thickness = 2
+frameStroke.Parent = mainFrame
 
--- Set properties for the KeyBox
-KeyBox.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-KeyBox.Position = UDim2.new(0.1, 0, 0.4, 0)
-KeyBox.Size = UDim2.new(0.8, 0, 0.2, 0)
-KeyBox.Font = Enum.Font.Gotham
-KeyBox.Text = "KEY"
-KeyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyBox.TextScaled = true
-KeyBox.TextWrapped = true
+-- Add gradient to main frame
+local frameGradient = Instance.new("UIGradient")
+frameGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.new(0.1, 0.1, 0.1)),
+    ColorSequenceKeypoint.new(1, Color3.new(0.2, 0.2, 0.2))
+}
+frameGradient.Parent = mainFrame
 
--- Set properties for the VerifyButton
-VerifyButton.BackgroundColor3 = Color3.fromRGB(0, 204, 0)
-VerifyButton.Position = UDim2.new(0.1, 0, 0.65, 0)
-VerifyButton.Size = UDim2.new(0.8, 0, 0.15, 0)  -- Larger and wider
-VerifyButton.Font = Enum.Font.Gotham
-VerifyButton.Text = "VERIFY"
-VerifyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-VerifyButton.TextScaled = true
-VerifyButton.TextWrapped = true
+-- Create the title
+local title = Instance.new("TextLabel")
+title.Parent = mainFrame
+title.Text = "Alchemy Hub"
+title.Size = UDim2.new(0, 200, 0, 50)
+title.Position = UDim2.new(0.5, -100, 0, 10)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.new(1, 1, 1)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 28
+title.TextStrokeTransparency = 0.5
+title.TextScaled = true
 
--- Set properties for the GetKeyButton
-GetKeyButton.BackgroundColor3 = Color3.fromRGB(0, 204, 0)
-GetKeyButton.Position = UDim2.new(0.1, 0, 0.825, 0)
-GetKeyButton.Size = UDim2.new(0.8, 0, 0.15, 0)  -- Larger and wider
-GetKeyButton.Font = Enum.Font.Gotham
-GetKeyButton.Text = "GET KEY"
-GetKeyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-GetKeyButton.TextScaled = true
-GetKeyButton.TextWrapped = true
+-- Create key input textbox
+local keyBox = Instance.new("TextBox")
+keyBox.Parent = mainFrame
+keyBox.PlaceholderText = "Enter your key"
+keyBox.Size = UDim2.new(0, 300, 0, 50)
+keyBox.Position = UDim2.new(0.5, -150, 0, 70)
+keyBox.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
+keyBox.TextColor3 = Color3.new(1, 1, 1)
+keyBox.Font = Enum.Font.Gotham
+keyBox.TextSize = 18
+keyBox.ClearTextOnFocus = false
 
--- Set properties for the CloseButton
-CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton.Position = UDim2.new(0.92, 0, 0, 0)
-CloseButton.Size = UDim2.new(0, 35, 0, 35)
-CloseButton.Font = Enum.Font.GothamBold
-CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.TextScaled = true
-CloseButton.TextWrapped = true
+-- Add corner radius to keyBox
+local keyBoxCornerRadius = Instance.new("UICorner")
+keyBoxCornerRadius.CornerRadius = UDim.new(0, 10)
+keyBoxCornerRadius.Parent = keyBox
 
--- Define the correct key and the loadstring URL
-local correctKey = "YourCustomKey"
-local loadstringURL = "https://pastebin.com/raw/yourloadstringcode"
+-- Create Verify button
+local verifyButton = Instance.new("TextButton")
+verifyButton.Parent = mainFrame
+verifyButton.Text = "VERIFY"
+verifyButton.Size = UDim2.new(0, 140, 0, 50)
+verifyButton.Position = UDim2.new(0.5, -160, 0, 150)
+verifyButton.BackgroundColor3 = Color3.new(0.25, 0.75, 0.25)
+verifyButton.TextColor3 = Color3.new(1, 1, 1)
+verifyButton.Font = Enum.Font.GothamBold
+verifyButton.TextSize = 18
 
--- Notification function
-local function notify(title, message)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = title;
-        Text = message;
-        Duration = 5;
-    })
+-- Add corner radius to verifyButton
+local verifyButtonCornerRadius = Instance.new("UICorner")
+verifyButtonCornerRadius.CornerRadius = UDim.new(0, 10)
+verifyButtonCornerRadius.Parent = verifyButton
+
+-- Create Get Key button
+local getKeyButton = Instance.new("TextButton")
+getKeyButton.Parent = mainFrame
+getKeyButton.Text = "GET KEY"
+getKeyButton.Size = UDim2.new(0, 140, 0, 50)
+getKeyButton.Position = UDim2.new(0.5, 20, 0, 150)
+getKeyButton.BackgroundColor3 = Color3.new(0.05, 0.05, 0.05)
+getKeyButton.TextColor3 = Color3.new(1, 1, 1)
+getKeyButton.Font = Enum.Font.GothamBold
+getKeyButton.TextSize = 18
+
+-- Add corner radius to getKeyButton
+local getKeyButtonCornerRadius = Instance.new("UICorner")
+getKeyButtonCornerRadius.CornerRadius = UDim.new(0, 10)
+getKeyButtonCornerRadius.Parent = getKeyButton
+
+-- Add gradient and outline to getKeyButton
+local getKeyButtonGradient = Instance.new("UIGradient")
+getKeyButtonGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.new(0, 1, 0)),  -- Green light
+    ColorSequenceKeypoint.new(0.5, Color3.new(0, 1, 0)),
+    ColorSequenceKeypoint.new(0.5, Color3.new(0.25, 0.75, 0.25)),  -- Normal green
+    ColorSequenceKeypoint.new(1, Color3.new(0.25, 0.75, 0.25))
+}
+getKeyButtonGradient.Parent = getKeyButton
+
+local getKeyButtonStroke = Instance.new("UIStroke")
+getKeyButtonStroke.Color = Color3.new(0.25, 0.75, 0.25)
+getKeyButtonStroke.Thickness = 2
+getKeyButtonStroke.Parent = getKeyButton
+
+-- Create close button (X)
+local closeButton = Instance.new("TextButton")
+closeButton.Parent = mainFrame
+closeButton.Text = "X"
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -40, 0, 10)
+closeButton.BackgroundColor3 = Color3.new(0.8, 0.1, 0.1)
+closeButton.TextColor3 = Color3.new(1, 1, 1)
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 18
+
+-- Add corner radius to closeButton
+local closeButtonCornerRadius = Instance.new("UICorner")
+closeButtonCornerRadius.CornerRadius = UDim.new(0, 8)
+closeButtonCornerRadius.Parent = closeButton
+
+-- Utility functions to get HWID or UUID
+local function getHWID()
+    return "example_hwid_12345" -- Replace this with actual HWID retrieval method
 end
 
--- Verify Button functionality
-VerifyButton.MouseButton1Click:Connect(function()
-    if KeyBox.Text == correctKey then
-        notify("Riley Hub X Key System", "Correct Key")
-        loadstring(game:HttpGet(loadstringURL))()
+local function getUUID()
+    return "example_uuid_67890" -- Replace this with actual UUID retrieval method
+end
+
+-- Key validation logic
+local validKeyURL = "https://rhxkeysystem.vercel.app/validate?key="
+
+verifyButton.MouseButton1Click:Connect(function()
+    local key = keyBox.Text
+    local deviceType = "unknown"
+    if game:GetService("UserInputService").TouchEnabled then
+        -- Assuming it's mobile
+        if game:GetService("UserInputService").KeyboardEnabled then
+            -- Likely Android
+            key = "rhx_hwid_" .. getHWID()
+            deviceType = "Android"
+        else
+            -- Likely iOS
+            key = "rhx_" .. getUUID()
+            deviceType = "iOS"
+        end
+    end
+    
+    local url = validKeyURL .. key
+    local response = HttpService:GetAsync(url)
+    local data = HttpService:JSONDecode(response)
+    
+    if data.valid then
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Correct Key",
+            Duration = 5,
+        })
+        -- Execute the loadstring script
+        loadstring(game:HttpGet("https://your_script_url.com/script.lua"))() -- Replace with your actual script URL
+        screenGui:Destroy()
     else
-        notify("Riley Hub X Key System", "Incorrect Key")
-        KeyBox.Text = ""
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Incorrect Key",
+            Duration = 5,
+        })
     end
 end)
 
--- Get Key Button functionality
-GetKeyButton.MouseButton1Click:Connect(function()
-    local url = "https://yourwebsite.com/getkey"
+getKeyButton.MouseButton1Click:Connect(function()
+    -- Replace the URL with the actual link to get the key
+    local url = "https://rhxkeysystem.vercel.app"
     setclipboard(url)
-    notify("Riley Hub X Key Syste,", "Link copied to clipboard!")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Key System",
+        Text = "Key link copied to clipboard",
+        Duration = 5,
+    })
 end)
 
--- Close Button functionality
-CloseButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
 end)
