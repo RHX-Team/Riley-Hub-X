@@ -1020,7 +1020,7 @@ open.BorderColor3 = Color3.fromRGB(0, 0, 0)
 open.BorderSizePixel = 0
 open.Position = UDim2.new(0.4557916224002838, 0, 0.018518516793847084, 0)
 open.Size = UDim2.new(0, 51, 0, 38)
-open.Image = "https://cdn.discordapp.com/attachments/1252598128322936895/1252940495769043044/Yxu___Roblox_Executor-1.png?ex=66740b44&is=6672b9c4&hm=d4574a8d83b614583f20bc6882b604e5db216b7462aa60937c3dc012c23a4b5e&"
+open.Image = "rbxassetid://18118868002"
 
 UIStroke_26.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke_26.Color = Color3.fromRGB(145, 145, 145)
