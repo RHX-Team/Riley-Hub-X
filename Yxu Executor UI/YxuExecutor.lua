@@ -1267,7 +1267,7 @@ mainframe.Draggable = true
 	click(searchbutton, function()
 		if issearching then
 			game.StarterGui:SetCore("SendNotification", {
-				Title = "Alysse",
+				Title = "Yxu Executor",
 				Text = "The Search Is Currently On Progress",
 				Duration = 1,
 			})
@@ -1395,13 +1395,13 @@ mainframe.Draggable = true
 	
 		local greeting = ""
 		if hour >= 5 and hour < 12 then
-			greeting = "Good morning, " .. plrname .. "!"
+			greeting = "Good Morning, " .. plrname .. "!"
 		elseif hour >= 12 and hour < 17 then
-			greeting = "Good afternoon, " .. plrname .. "!"
+			greeting = "Good Afternoon, " .. plrname .. "!"
 		elseif hour >= 17 and hour < 21 then
-			greeting = "Good evening, " .. plrname .. "!"
+			greeting = "Good Evening, " .. plrname .. "!"
 		else
-			greeting = "Good night, " .. plrname .. "!"
+			greeting = "Good Night, " .. plrname .. "!"
 		end
 	
 		homewelcometext.Text = greeting
