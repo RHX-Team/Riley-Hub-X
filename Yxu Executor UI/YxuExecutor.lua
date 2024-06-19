@@ -4,7 +4,7 @@ if _G.YxuExecutorLoaded then
 	return
 end
 
-local yxuexecutor = Instance.new("ScreenGui")
+local alysse = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local sidebar = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -141,13 +141,13 @@ local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
 
 --Properties:
 
-yxuexecutor.Name = "yxuexecutor"
-yxuexecutor.Parent = (game:GetService("CoreGui") or gethui())
-yxuexecutor.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+alysse.Name = "alysse"
+alysse.Parent = (game:GetService("CoreGui") or gethui())
+alysse.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 _G.YxuExecutorLoaded = true
 
 main.Name = "main"
-main.Parent = yxuexecutor
+main.Parent = alysse
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 main.BorderColor3 = Color3.fromRGB(0, 0, 0)
