@@ -144,7 +144,7 @@ local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
 alysse.Name = "alysse"
 alysse.Parent = (game:GetService("CoreGui") or gethui())
 alysse.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-_G.AlysseLoaded = true
+_G.YxuExecutorLoaded = true
 
 main.Name = "main"
 main.Parent = alysse
@@ -192,7 +192,7 @@ home.BorderColor3 = Color3.fromRGB(0, 0, 0)
 home.BorderSizePixel = 0
 home.Position = UDim2.new(0.218181819, 0, 0.0385852084, 0)
 home.Size = UDim2.new(0, 30, 0, 30)
-home.Image = "https://raw.githubusercontent.com/RHX-Team/Riley-Hub-X/main/Yxu%20Executor%20UI/Itachi.png"
+home.Image = "rbxassetid://12967526257"
 home.ImageColor3 = Color3.fromRGB(143, 143, 143)
 
 UIAspectRatioConstraint.Parent = home
@@ -205,7 +205,7 @@ executor.BorderColor3 = Color3.fromRGB(0, 0, 0)
 executor.BorderSizePixel = 0
 executor.Position = UDim2.new(0.218181819, 0, 0.0385852084, 0)
 executor.Size = UDim2.new(0, 30, 0, 30)
-executor.Image = "https://raw.githubusercontent.com/RHX-Team/Riley-Hub-X/main/Yxu%20Executor%20UI/Obito-Uchiha.png"
+executor.Image = "rbxassetid://11419714821"
 executor.ImageColor3 = Color3.fromRGB(143, 143, 143)
 
 UIAspectRatioConstraint_2.Parent = executor
@@ -231,7 +231,7 @@ cloud.BorderColor3 = Color3.fromRGB(0, 0, 0)
 cloud.BorderSizePixel = 0
 cloud.Position = UDim2.new(0.218181819, 0, 0.0385852084, 0)
 cloud.Size = UDim2.new(0, 30, 0, 30)
-cloud.Image = "https://raw.githubusercontent.com/RHX-Team/Riley-Hub-X/main/Yxu%20Executor%20UI/Sasuke.png"
+cloud.Image = "rbxassetid://12975590427"
 cloud.ImageColor3 = Color3.fromRGB(143, 143, 143)
 
 UIAspectRatioConstraint_4.Parent = cloud
@@ -512,7 +512,7 @@ execbox.ClearTextOnFocus = false
 execbox.Font = Enum.Font.Gotham
 execbox.MultiLine = true
 execbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-execbox.PlaceholderText = "-- Welcome To Yxu Executor"
+execbox.PlaceholderText = "-- Thanks for using Alysse!"
 execbox.Text = ""
 execbox.TextColor3 = Color3.fromRGB(145, 145, 145)
 execbox.TextSize = 14.000
@@ -620,7 +620,7 @@ executeclipboard.Position = UDim2.new(0.729910731, 0, 0.859954357, 0)
 executeclipboard.Size = UDim2.new(0, 119, 0, 36)
 executeclipboard.AutoButtonColor = false
 executeclipboard.Font = Enum.Font.Gotham
-executeclipboard.Text = "Execute Clipboard"
+executeclipboard.Text = "[ REDACTED ]"
 executeclipboard.TextColor3 = Color3.fromRGB(145, 145, 145)
 executeclipboard.TextSize = 14.000
 
@@ -964,7 +964,7 @@ searchbox.Position = UDim2.new(0.0172413792, 0, 0.0321543403, 0)
 searchbox.Size = UDim2.new(0, 372, 0, 40)
 searchbox.Font = Enum.Font.Gotham
 searchbox.PlaceholderColor3 = Color3.fromRGB(145, 145, 145)
-searchbox.PlaceholderText = "Search Script"
+searchbox.PlaceholderText = "Powered by Scriptblox.com"
 searchbox.Text = ""
 searchbox.TextColor3 = Color3.fromRGB(145, 145, 145)
 searchbox.TextSize = 14.000
@@ -1020,7 +1020,7 @@ open.BorderColor3 = Color3.fromRGB(0, 0, 0)
 open.BorderSizePixel = 0
 open.Position = UDim2.new(0.4557916224002838, 0, 0.018518516793847084, 0)
 open.Size = UDim2.new(0, 51, 0, 38)
-open.Image = "https://raw.githubusercontent.com/RHX-Team/Riley-Hub-X/main/Yxu%20Executor%20UI/Sasuke.png"
+open.Image = "https://cdn.discordapp.com/attachments/1252598128322936895/1252940495769043044/Yxu___Roblox_Executor-1.png?ex=66740b44&is=6672b9c4&hm=d4574a8d83b614583f20bc6882b604e5db216b7462aa60937c3dc012c23a4b5e&"
 
 UIStroke_26.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke_26.Color = Color3.fromRGB(145, 145, 145)
@@ -1267,8 +1267,8 @@ mainframe.Draggable = true
 	click(searchbutton, function()
 		if issearching then
 			game.StarterGui:SetCore("SendNotification", {
-				Title = "Yxu Executor",
-				Text = "A search is currently in progress.",
+				Title = "Alysse",
+				Text = "The Search Is Currently On Progress",
 				Duration = 1,
 			})
 			return
@@ -1305,7 +1305,7 @@ mainframe.Draggable = true
 					local gamedata = decodedgames.result.scripts
 	
 					if next(gamedata) == nil then
-						print("Alysse has found no results.")
+						print("Yxu Executor Didnt Found Any Results")
 					else
 						for i, v in pairs(gamedata) do
 							local canvassizelol = cloudtab.section.CanvasSize
