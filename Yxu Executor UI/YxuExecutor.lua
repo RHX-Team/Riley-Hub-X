@@ -4,7 +4,7 @@ if _G.YxuExecutorLoaded then
 	return
 end
 
-local alysse = Instance.new("ScreenGui")
+local yxuexecutor = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local sidebar = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -141,13 +141,13 @@ local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
 
 --Properties:
 
-alysse.Name = "alysse"
-alysse.Parent = (game:GetService("CoreGui") or gethui())
-alysse.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+yxuexecutor.Name = "yxuexecutor"
+yxuexecutor.Parent = (game:GetService("CoreGui") or gethui())
+yxuexecutor.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 _G.YxuExecutorLoaded = true
 
 main.Name = "main"
-main.Parent = alysse
+main.Parent = yxuexecutor
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 main.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -295,7 +295,7 @@ greet.BorderSizePixel = 0
 greet.Position = UDim2.new(0.22301729, 0, 0.284686744, 0)
 greet.Size = UDim2.new(0, 342, 0, 37)
 greet.Font = Enum.Font.Gotham
-greet.Text = "Greetings, Name"
+greet.Text = "Welcome, Name"
 greet.TextColor3 = Color3.fromRGB(145, 145, 145)
 greet.TextSize = 18.000
 greet.TextWrapped = true
@@ -512,7 +512,7 @@ execbox.ClearTextOnFocus = false
 execbox.Font = Enum.Font.Gotham
 execbox.MultiLine = true
 execbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-execbox.PlaceholderText = "-- Thanks for using Alysse!"
+execbox.PlaceholderText = "-- Welcome To Yxu Executor!"
 execbox.Text = ""
 execbox.TextColor3 = Color3.fromRGB(145, 145, 145)
 execbox.TextSize = 14.000
@@ -620,7 +620,7 @@ executeclipboard.Position = UDim2.new(0.729910731, 0, 0.859954357, 0)
 executeclipboard.Size = UDim2.new(0, 119, 0, 36)
 executeclipboard.AutoButtonColor = false
 executeclipboard.Font = Enum.Font.Gotham
-executeclipboard.Text = "[ REDACTED ]"
+executeclipboard.Text = "Execute Clipboard"
 executeclipboard.TextColor3 = Color3.fromRGB(145, 145, 145)
 executeclipboard.TextSize = 14.000
 
